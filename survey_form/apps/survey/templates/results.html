@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Results page</title>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	</head>
+	<body>
+		<div>
+			<h2>Thanks for submitting this form! You have submitted this form {{request.session.count}} times</h2>
+		</div>
+		<div>
+			<p>Name: {{request.session.name}}</p>
+			<p>Dojo Location: {{request.session.favorite_city}}</p>
+			<p>Favorite Language: {{request.session.fav_language}}</p>
+			<p>Comments: {{request.session.comments}}</p>
+		</div>
+		<form action="/goback" method="post">
+			{% csrf_token %}
+			<input type="submit" value=" GO BAKKKK ">
+			
+		</form>
+	</body>
+</html>

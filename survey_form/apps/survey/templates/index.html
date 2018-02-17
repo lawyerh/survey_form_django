@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>form</title>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	</head>
+	<body>
+		<form action="/process" method="POST">
+			{% csrf_token %}
+			<input type="text" name="name" placeholder="Full name..">
+			<select name="favorite_city">
+				<option value="Seattle">Seattle</option>
+				<option value="Los Angeles">Los Angeles</option>
+				<option value="Other">Other</option>
+			</select>
+			<select name="fav_language">
+				<option value="Python">Python</option>
+				<option value="Javascript">JavaScript</option>
+				<option value="HTML">HTML</option>
+				<option value="CSS">CSS</option>
+			</select>
+			<textarea name="comments" placeholder="Comments here.."></textarea>
+			<input type="submit" value=" SUBMIT ME HAHAHAHA ">
+		</form>
+	</body>
+</html>
