@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ninja Gold</title>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	</head>
+	<body>
+		<div id="container">
+			<div id="jobs">
+				<p>Your Gold: </p>
+				<div id="gold">{{request.session.gold}}</div>
+				<form id="restart" action="/clear" method='post'>
+					{% csrf_token %}
+					<button type="submit" class="addGold">Restart</button>
+					
+				</form>
+				<div id="building_containers">
+					<div class="building">
+						<h1>
+							Farm
+						</h1>
+						<p class="text">
+							(Earns 10-20 golds)
+						</p>
+						<form action="/process_money" method="post">
+							{% csrf_token %}
+							<input type="hidden" name="findGold" value="farm">
+							<button type="submit" class="addGold">Find Gold!</button>
+						</form>
+					</div>
+					<div class="building">
+						<h1>
+							Cave
+						</h1>
+						<p class="text">
+							(Earns 5-10 golds)
+						</p>
+						<form action="/process_money" method="post">
+							{% csrf_token %}
+							<input type="hidden" name="findGold" value="cave">
+							<button type="submit" class="addGold">Find Gold!</button>
+						</form>
+					</div>
+					<div class="building">
+						<h1>
+							House
+						</h1>
+						<p class="text">
+							(Earns 2-5 golds)
+						</p>
+						<form action="/process_money" method="post">
+							{% csrf_token %}
+							<input type="hidden" name="findGold" value="house">
+							<button type="submit" class="addGold">Find Gold!</button>
+						</form>
+					</div>
+					<div class="building">
+						<h1>
+							Casino
+						</h1>
+						<p class="casinoText">
+							(Earns/Takes 0-50 golds)
+						</p>
+						<form action="/process_money" method="post">
+							{% csrf_token %}
+							<input type="hidden" name="findGold" value="casino">
+							<button type="submit" class="addGold">Find Gold!</button>
+						</form>
+					</div>
+				</div>
+
+			</div>
+			<div id="log">
+				<h3>
+					Activities:
+				</h3>
+				<textarea id="activities">
+					{% for string in request.session.log reversed %}
+						{{string}}
+					{% endfor %}
+				</textarea>
+			</div>
+		</div>
+	</body>
+</html>
